@@ -1668,6 +1668,11 @@ public class SSLSocketTest extends TestCase {
         context.close();
     }
 
+    private static void assertInappropriateFallbackIsCause(Throwable cause) {
+        assertTrue(cause.getMessage(), cause.getMessage().contains("inappropriate fallback")
+                || cause.getMessage().contains("INAPPROPRIATE_FALLBACK"));
+    }
+
     public void test_SSLSocket_sendsTlsFallbackScsv_InappropriateFallback_Failure() throws Exception {
         TestSSLContext context = TestSSLContext.create();
 
@@ -1693,8 +1698,7 @@ public class SSLSocketTest extends TestCase {
                     } catch (SSLHandshakeException expected) {
                         Throwable cause = expected.getCause();
                         assertEquals(SSLProtocolException.class, cause.getClass());
-                        assertTrue(cause.getMessage(),
-                                cause.getMessage().contains("inappropriate fallback"));
+                        assertInappropriateFallbackIsCause(cause);
                     }
                     return null;
                 }
@@ -1709,8 +1713,7 @@ public class SSLSocketTest extends TestCase {
                     } catch (SSLHandshakeException expected) {
                         Throwable cause = expected.getCause();
                         assertEquals(SSLProtocolException.class, cause.getClass());
-                        assertTrue(cause.getMessage(),
-                                cause.getMessage().contains("inappropriate fallback"));
+                        assertInappropriateFallbackIsCause(cause);
                     }
                     return null;
                 }
