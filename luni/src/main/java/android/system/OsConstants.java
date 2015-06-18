@@ -203,6 +203,7 @@ public final class OsConstants {
     public static final int ENOLINK = placeholder();
     public static final int ENOMEM = placeholder();
     public static final int ENOMSG = placeholder();
+    /** @hide */ public static final int ENONET = placeholder();
     public static final int ENOPROTOOPT = placeholder();
     public static final int ENOSPC = placeholder();
     public static final int ENOSR = placeholder();
@@ -752,6 +753,9 @@ public final class OsConstants {
         }
         if (errno == ENOMSG) {
             return "ENOMSG";
+        }
+        if (errno == ENONET) {
+            return "ENONET";
         }
         if (errno == ENOPROTOOPT) {
             return "ENOPROTOOPT";
