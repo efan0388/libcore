@@ -101,6 +101,7 @@ public class Services {
             }
         }
         Engine.door.renumProviders();
+        setNeedRefresh();
     }
 
     /**
